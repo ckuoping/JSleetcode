@@ -1,3 +1,4 @@
+/*
 var twoSum = function(nums, target) {
     for (let i = 0; i < nums.length; i++) {
 
@@ -6,6 +7,18 @@ var twoSum = function(nums, target) {
 
         // may not use same element twice : id should not be the same
         if (id !== -1 && i !== id) return ([i, id]);
+
+    }
+};
+*/
+
+var twoSum = function(nums, target) {
+
+    for(let i  = 0; i<nums.length; i++){
+        let id = nums.findIndex((item) => item === (target - nums[i]))
+        if(id !== -1 && i !== id){
+            return [i,id];
+        }
 
     }
 };
