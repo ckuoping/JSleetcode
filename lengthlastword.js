@@ -1,17 +1,18 @@
+/*
 var lengthOfLastWord = function(s) {
     // 寫法1
-    /*
+    
     const word = s.trim().split(" ");
     const wordlen = word[word.length-1].length;
 
     return wordlen;
-    */
+    
 
     // 寫法2
-    /*
+    
     const word = s.trim();
     return (word.length - 1) - word.lastIndexOf(" ");
-    */
+    
 
     // 寫法3
     let endIndex = s.length - 1;
@@ -26,6 +27,27 @@ var lengthOfLastWord = function(s) {
     {
         len++;
         endIndex--;
+    }
+
+    return len;
+};
+*/
+
+var lengthOfLastWord = function(s) {
+
+    // 寫法 1
+    // let strArr = s.trim().split(" "); 
+    // return strArr[strArr.length - 1].length
+
+    // 寫法 2
+    s = s.trim();
+
+    let endIndex = s.length - 1;
+    let len = 0;
+
+    while(s[endIndex] !== " " && s[endIndex] !== undefined){
+        len++;
+        endIndex--
     }
 
     return len;
