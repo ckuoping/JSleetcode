@@ -20,7 +20,7 @@
 //                 if(middleIndex < s.length){
 //                   results += s[middleIndex];  
 //                 }
-                
+
 //             }
 //         }
 //     }
@@ -28,26 +28,23 @@
 //     return results;
 // };
 
-var convert = function(s, numRows){
+var convert = function(s, numRows) {
     let res = "";
-
-    for(let i = 0; i<numRows; i++){ // i表示列數
-
-        let gap = numRows + numRows - 2;
-
-        for(let j = i; j<s.length; j = j + gap){
+    for (let i = 0; i < numRows; i++) { // i = 列
+        let gap = numRows + numRows - 2
+        for (let j = i; j < s.length; j += gap) {
             res = res + s[j];
 
-            if( i>0 && i <numRows - 1){
-                let midIndex =j + gap - 2*i;
-                if(midIndex < s.length)
-                    res = res + s[midIndex ];
+            if (i > 0 && i < numRows - 1) {
+                let mid = j + gap - 2 * i;
+                if (mid < s.length)
+                    res = res + s[mid];
             }
- 
         }
     }
 
     return res;
 }
 
-console.log(convert("PAYPALISHIRING",3));
+console.log(convert("PAYPALISHIRING", 3));
+console.log(convert("PAYPALISHIRING", 4));
