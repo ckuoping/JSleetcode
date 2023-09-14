@@ -1,40 +1,31 @@
 var searchInsert = function(nums, target) {
 
-    let index = 0;
+    // let index = 0;
 
     // for(let i = 0; i<nums.length; i++){
     //     if(target < nums[i]){
-    //         index = 0;
+    //         console.log('here1');
+    //         return 0;
     //     }
-    //     else if (target >= nums[i] && target < nums[i+1]){
-    //         console.log('com',target,nums[i],nums[i+1],i)
-    //         index = i;
-    //         console.log(index)
+        
+    //     if (target > nums[i] && target < nums[i+1]){
+    //         console.log('here2');
+    //         return i;
     //     }
-    //     else{
-    //         index = nums.length - 1;
-    //         console.log(index)
+
+    //     if(target > nums[nums.length - 1]){
+    //         console.log('here3');
+    //         return nums.length - 1;
     //     }
     // }
-    while(index < nums.length){
-        if(target < nums[index]){
-            index = 0;
-        }
-        else if (target >= nums[index] && target < nums[index+1]){
-            console.log('com',target,nums[i],nums[i+1],i)
-            index = i;
-            console.log(index)
-        }
-        else{
-            index = nums.length - 1;
-            console.log(index)
-        }
-        index ++;
-    }
-    console.log(index)
-    return index;
+    nums.push(target);
+    nums.sort();
+    console.log(nums.sort((a,b)=>a-b))
+    return nums.indexOf(target);
+
+    // return index;
     
 };
 
 console.log(searchInsert([1,3,5,6],5));
-// console.log(searchInsert("mississippi","sipp"));
+console.log(searchInsert([1,2,3,4,5,10],2));
