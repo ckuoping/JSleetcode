@@ -40,14 +40,25 @@ var lengthOfLastWord = function(s) {
     // return strArr[strArr.length - 1].length
 
     // 寫法 2
+    // s = s.trim();
+
+    // let endIndex = s.length - 1;
+    // let len = 0;
+
+    // while(s[endIndex] !== " " && s[endIndex] !== undefined){
+    //     len++;
+    //     endIndex--
+    // }
+
+    // return len;
     s = s.trim();
 
     let endIndex = s.length - 1;
     let len = 0;
 
-    while(s[endIndex] !== " " && s[endIndex] !== undefined){
-        len++;
-        endIndex--
+    while (s[endIndex] !== " " && s[endIndex] !== undefined) {
+        endIndex--;
+        len++
     }
 
     return len;
