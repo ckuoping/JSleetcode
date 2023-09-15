@@ -1,31 +1,31 @@
 var searchInsert = function(nums, target) {
 
-    // let index = 0;
 
-    // for(let i = 0; i<nums.length; i++){
-    //     if(target < nums[i]){
-    //         console.log('here1');
-    //         return 0;
-    //     }
-        
-    //     if (target > nums[i] && target < nums[i+1]){
-    //         console.log('here2');
-    //         return i;
-    //     }
+    for (let i = 0; i < nums.length; i++) {
+        for (let i = 0; i < nums.length; i++) {
+            if (target < nums[i]) {
+                return 0;
+            }
 
-    //     if(target > nums[nums.length - 1]){
-    //         console.log('here3');
-    //         return nums.length - 1;
-    //     }
-    // }
-    nums.push(target);
-    nums.sort();
-    console.log(nums.sort((a,b)=>a-b))
-    return nums.indexOf(target);
+            if (target >= nums[i] && target < nums[i + 1] && nums[i + 1] !== undefined) {
+                return (target == nums[i]) ? i : i + 1;
+            }
+
+            if (target >= nums[i] && nums[i + 1] === undefined) {
+                return (target == nums[i]) ? i : nums.length;
+            }
+
+
+        }
+    }
+    // nums.push(target);
+    // nums.sort();
+    // console.log(nums.sort((a,b)=>a-b))
+    // return nums.indexOf(target);
 
     // return index;
-    
+
 };
 
-console.log(searchInsert([1,3,5,6],5));
-console.log(searchInsert([1,2,3,4,5,10],2));
+console.log(searchInsert([1, 3, 5, 6], 5));
+console.log(searchInsert([1, 2, 3, 4, 5, 10], 10));
