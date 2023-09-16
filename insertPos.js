@@ -1,27 +1,37 @@
 var searchInsert = function(nums, target) {
 
-    // 迴圈比對法
-    for (let i = 0; i < nums.length; i++) {
-        for (let i = 0; i < nums.length; i++) {
+    // // 1.先判斷該元素有無存在，若有直接回傳該index
+    // if(nums.includes(target)) return nums.indexOf(target);
 
-            // 若target比首位小，直接return 0
-            if (target < nums[i]) {
-                return 0;
-            }
+    // // 2.若無則找出陣列中第一個比target大的元素，回傳該元素index
+    // let index = 0;
+    // while(nums[index] < target){
+    //     index ++;
+    // }
 
-            // 若target>=前位，<後位，且後位不是undefined，則可能是前位的index或index + 1
-            if (target >= nums[i] && target < nums[i + 1] && nums[i + 1] !== undefined) {
-                return (target == nums[i]) ? i : i + 1;
-            }
+    // return index
+      // 先找出左右兩邊的位置是多少，分別是尋找範圍的起和迄
+  let left = 0, right = nums.length - 1;
+  while (left <= right) {
+    // 找出起訖的中間位置
+    const middle = Math.floor((left + right) / 2);
+    // 如果中間位置的元素等於目標數字，就直接回傳
+    if (nums[middle] === target)
+      return middle;
+    // 如果中間位置的元素大於目標數字，就把迄的位置設成中間位置 - 1
+    else if (nums[middle] > target)
+      right = middle - 1;
+    // 如果中間位置元素大於目標數字，就把起的位置設成中間位置 + 1
+    else if (nums[middle] < target)
+      left = middle + 1;
 
-            // 若target>=前位，且後位是undefined，則可能是前位的index或直接最後一位
-            if (target >= nums[i] && nums[i + 1] === undefined) {
-                return (target == nums[i]) ? i : nums.length;
-            }
+    console.log('left id',left)
+    console.log('rightt id',right)
+    console.log('mideel id',middle)
+  }
+  // 如果最後都沒找到，就把迄的位置 + 1 回傳
+  return right + 1;
 
-
-        }
-    }
     // JS 內建函式庫方法
     /*
     // 1.先加入target
@@ -37,5 +47,8 @@ var searchInsert = function(nums, target) {
 
 };
 
-console.log(searchInsert([1, 3, 5, 6], 5));
-console.log(searchInsert([1, 2, 3, 4, 5, 10], 10));
+// console.log(searchInsert([1, 3, 5, 6], 5));
+// console.log(searchInsert([1, 3, 5, 6], 0));
+// console.log(searchInsert([1, 3, 5, 6], 4))
+console.log(searchInsert([1, 3, 5, 6], 7));;
+// console.log(searchInsert([1, 2, 3, 4, 5, 10], 10));
