@@ -1,54 +1,61 @@
 var searchInsert = function(nums, target) {
 
-    // // 1.先判斷該元素有無存在，若有直接回傳該index
-    // if(nums.includes(target)) return nums.indexOf(target);
+    /* 方法 A - JS 內建函式庫方法
+    // 1.先判斷該元素有無存在，若有直接回傳該index
+    if(nums.includes(target)) return nums.indexOf(target);
 
-    // // 2.若無則找出陣列中第一個比target大的元素，回傳該元素index
-    // let index = 0;
-    // while(nums[index] < target){
-    //     index ++;
-    // }
-
-    // return index
-      // 先找出左右兩邊的位置是多少，分別是尋找範圍的起和迄
-  let left = 0, right = nums.length - 1;
-  while (left <= right) {
-    // 找出起訖的中間位置
-    const middle = Math.floor((left + right) / 2);
-    // 如果中間位置的元素等於目標數字，就直接回傳
-    if (nums[middle] === target)
-      return middle;
-    // 如果中間位置的元素大於目標數字，就把迄的位置設成中間位置 - 1
-    else if (nums[middle] > target)
-      right = middle - 1;
-    // 如果中間位置元素大於目標數字，就把起的位置設成中間位置 + 1
-    else if (nums[middle] < target)
-      left = middle + 1;
-
-    console.log('left id',left)
-    console.log('rightt id',right)
-    console.log('mideel id',middle)
-  }
-  // 如果最後都沒找到，就把迄的位置 + 1 回傳
-  return right + 1;
-
-    // JS 內建函式庫方法
-    /*
-    // 1.先加入target
-    // 2.重新排序array，依照大小排序
-    // 3.找出target所在的第一個索引
+    // 2.若無則找出陣列中第一個比target大的元素，回傳該元素index
+    let index = 0;
+    while(nums[index] < target){
+        index ++;
+    }
+    return index
     */
-    // nums.push(target);
-    // nums.sort();
-    // console.log(nums.sort((a,b)=>a-b))
-    // return nums.indexOf(target);
 
-    // return index;
+    // 方法 B - 二分法
+    let left = 0;
+    let right = nums.length - 1;
+    
+    while(left <= right){
 
+      let middle = Math.floor((left + right) / 2);
+      
+      // console.log('左邊ID',left)
+      // console.log('右邊ID',right)
+      // console.log('中間ID',middle,'數值',nums[middle])
+      // console.log('==================')
+      
+      if(nums[middle] > target){
+        
+        right = middle - 1;
+
+      }else if (nums[middle] < target){
+
+        left = middle + 1;
+
+      }else{
+        return middle;
+      }
+    }
+
+    // 有點不解 right + 1
+    return right + 1;
+
+
+
+    
+    /* 方法 C - JS 內建函式庫方法
+    // 1.先加入target
+    nums.push(target);
+    // 2.重新排序array，依照大小排序
+    nums.sort();
+    // 3.找出target所在的第一個索引
+    return nums.indexOf(target);
+    */
 };
 
-// console.log(searchInsert([1, 3, 5, 6], 5));
-// console.log(searchInsert([1, 3, 5, 6], 0));
-// console.log(searchInsert([1, 3, 5, 6], 4))
-console.log(searchInsert([1, 3, 5, 6], 7));;
-// console.log(searchInsert([1, 2, 3, 4, 5, 10], 10));
+console.log(searchInsert([1, 3, 5, 6], 5));         // ans = 2
+console.log(searchInsert([1, 3, 5, 6], 0));         // ans = 0
+console.log(searchInsert([1, 3, 5, 6], 4))          // ans = 2
+console.log(searchInsert([1, 3, 5, 6], 7));;        // ans = 4
+console.log(searchInsert([1, 2, 3, 4, 5, 10], 10)); // ans = 5
