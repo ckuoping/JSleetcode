@@ -5,7 +5,7 @@ var fourSum = function(nums, target) {
         // 處理i的重複
         if (nums[i] === nums[i - 1]) continue;
         for (let j = i + 1; j < nums.length; j++) {
-            // 處理j的重複
+            // 處理j的重複：j>i+1以防止第一次的j也被continue掉
             if (j > i + 1 && nums[j] === nums[j - 1]) continue;
             let left = j + 1;
             let right = nums.length - 1;
